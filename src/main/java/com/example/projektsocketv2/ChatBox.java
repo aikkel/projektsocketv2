@@ -24,7 +24,7 @@ public class ChatBox extends Application {
             LoginController loginController = loader.getController();
             loginController.setPrimaryStage(primaryStage);
 
-            primaryStage.setTitle("Scene 1");
+            primaryStage.setTitle("Login");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (IOException e) {

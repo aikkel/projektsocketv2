@@ -39,7 +39,7 @@ public class LoginController {
             // Set the controller for chat-box
             ChatController chatController = loader.getController();
 
-            primaryStage.setTitle("Chat Box");
+            primaryStage.setTitle("Chat");
             primaryStage.setScene(new Scene(root));
             primaryStage.show();
         } catch (Exception e) {
