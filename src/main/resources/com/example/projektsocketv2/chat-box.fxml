@@ -6,8 +6,6 @@
 <?import javafx.scene.control.TextField?>
 <?import javafx.scene.effect.DropShadow?>
 <?import javafx.scene.effect.InnerShadow?>
-<?import javafx.scene.image.Image?>
-<?import javafx.scene.image.ImageView?>
 <?import javafx.scene.layout.AnchorPane?>
 <?import javafx.scene.paint.Color?>
 <?import javafx.scene.paint.LinearGradient?>
@@ -15,11 +13,11 @@
 <?import javafx.scene.text.Font?>
 <?import javafx.scene.text.Text?>
 
-<SplitPane dividerPositions="0.8492462311557789" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1">
+<SplitPane dividerPositions="0.8492462311557789" maxHeight="-Infinity" maxWidth="-Infinity" minHeight="-Infinity" minWidth="-Infinity" orientation="VERTICAL" prefHeight="400.0" prefWidth="600.0" style="-fx-border-color: black;" xmlns="http://javafx.com/javafx/20.0.1" xmlns:fx="http://javafx.com/fxml/1" fx:controller="com.example.projektsocketv2.ChatController">
   <items>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: lightblue;">
          <children>
-            <Button alignment="CENTER" layoutX="14.0" layoutY="14.0" mnemonicParsing="false" text="Luk" textAlignment="CENTER">
+            <Button fx:id="lukKnap" alignment="CENTER" layoutX="13.0" layoutY="12.0" mnemonicParsing="false" onAction="#onButtonLuk" style="-fx-border-color: black; -fx-background-color: white;" text="Luk" textAlignment="CENTER">
                <font>
                   <Font name="System Bold" size="13.0" />
                </font>
@@ -27,12 +25,12 @@
                   <InnerShadow />
                </effect>
             </Button>
-            <TextArea editable="false" layoutX="13.0" layoutY="41.0" prefHeight="280.0" prefWidth="572.0" text="linear-gradient(from 14.7619% 10.0% to 35.2381% 100.0%, repeat, #41b6d0 0.0%, #1150f7 100.0%)">
+            <TextArea fx:id="chatBox" editable="false" layoutX="13.0" layoutY="41.0" prefHeight="280.0" prefWidth="572.0" style="-fx-border-color: black;">
                <effect>
                   <InnerShadow />
                </effect>
             </TextArea>
-            <Text layoutX="253.0" layoutY="30.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kuulCytz4Live" textAlignment="CENTER">
+            <Text layoutX="244.0" layoutY="34.0" strokeType="OUTSIDE" strokeWidth="0.0" text="kuulCytz4Live" textAlignment="CENTER" wrappingWidth="109.228515625">
                <fill>
                   <LinearGradient cycleMethod="REPEAT" endX="0.3523809523809524" endY="1.0" startX="0.14761904761904762" startY="0.1">
                      <stops>
@@ -49,17 +47,15 @@
                      </stops>
                   </LinearGradient>
                </fill>
+               <font>
+                  <Font size="18.0" />
+               </font>
             </Text>
-            <ImageView blendMode="MULTIPLY" fitHeight="256.0" fitWidth="499.0" layoutX="71.0" layoutY="53.0" opacity="0.65" pickOnBounds="true" preserveRatio="true">
-               <image>
-                  <Image url="@wallpaper.jpg" />
-               </image>
-            </ImageView>
          </children></AnchorPane>
-    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0">
+    <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: lightblue;">
          <children>
-            <Button layoutX="522.0" layoutY="17.0" mnemonicParsing="false" text="Send" />
-            <TextField layoutX="14.0" layoutY="17.0" prefHeight="24.0" prefWidth="490.0" />
+            <Button fx:id="sendKnap" layoutX="522.0" layoutY="17.0" mnemonicParsing="false" onAction="#onButtonSend" style="-fx-border-color: black; -fx-background-color: white;" text="Send" />
+            <TextField fx:id="chatInput" layoutX="14.0" layoutY="17.0" prefHeight="24.0" prefWidth="490.0" style="-fx-border-color: black;" />
          </children></AnchorPane>
   </items>
    <effect>
