@@ -1,5 +1,6 @@
 package com.example.projektsocketv2;
 
+import javafx.application.Application;
 import javafx.fxml.FXML;
 import javafx.scene.control.Button;
 import javafx.scene.control.TextArea;
@@ -11,9 +12,11 @@ public class ChatController {
     @FXML private Button sendKnap;
     @FXML private Button lukKnap;
 
+    public String name = LoginController.getName();
+
     public void onButtonSend() {
         String input = chatInput.getText();
-        chatBox.appendText(input + "\n");
+        chatBox.appendText(name + "> " + input + "\n");
         chatInput.clear();
     }
 

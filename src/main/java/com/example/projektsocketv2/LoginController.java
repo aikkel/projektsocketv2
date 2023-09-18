@@ -14,6 +14,16 @@ public class LoginController {
     @FXML private Button lukButton;
     @FXML private Button acceptKnap;
 
+    private static String name;
+
+    public static String getName() {
+        return name;
+    }
+
+    public void setName(String name) {
+        LoginController.name = name;
+    }
+
     private Stage primaryStage;
 
     public void setPrimaryStage(Stage primaryStage) {
@@ -44,6 +54,9 @@ public class LoginController {
     }
 
     public void acceptButtonClick(ActionEvent actionEvent) {
+        setName(nameInput.getText());
+        System.out.println(nameInput.getText());
+        System.out.println(getName());
         switchToScene2();
     }
 }
