@@ -5,6 +5,7 @@ import java.net.*;
 
 public class Client {
     public static void main(String[] args) {
+
         String serverAddress = "127.0.0.1"; //Replace with the actual IP address or hostname of the server
         int serverPort = 8080; //Replace with the port number the server is listening on
 

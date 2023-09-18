@@ -3,7 +3,7 @@ package Client;
 import java.io.*;
 import java.net.*;
 
-public class Server {
+public class ServerConnection {
     public static void main(String[] args) {
         int serverPort = 8080; //Port number the server will listen on
 
