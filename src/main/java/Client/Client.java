@@ -2,7 +2,7 @@ package Client;
 
 import java.io.*;
 import java.net.*;
-
+//todo mangler skriv navn, kalde navnetjekker og kalde navne sletter, multiconnect threading chat. kombabilet med FXML, connect kode til GUI
 public class Client {
     public static void main(String[] args) {
 
