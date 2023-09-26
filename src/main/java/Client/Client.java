@@ -9,7 +9,6 @@ import java.net.Socket;
 import java.io.*;
 import java.net.*;
 //todo mangler skriv navn, kalde navnetjekker og kalde navne sletter, multiconnect threading chat. kombabilet med FXML, connect kode til GUI
-
 public class Client {
     public static void main(String[] args) {
         String serverAddress = "127.0.0.1"; // Replace with the actual IP address or hostname of the server

@@ -35,7 +35,7 @@ public class Server {
 
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
-
+//todo retuner noget der kan måles på, så logincontroller kan skrive tilbage med success eller fejl
 public class Server {
     private List<String> connectedNames = new CopyOnWriteArrayList<>();
 
