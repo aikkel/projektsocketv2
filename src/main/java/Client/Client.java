@@ -1,10 +1,14 @@
 package Client;
 
+
 import java.io.BufferedReader;
 import java.io.IOException;
 import java.io.InputStreamReader;
 import java.io.PrintWriter;
 import java.net.Socket;
+import java.io.*;
+import java.net.*;
+//todo mangler skriv navn, kalde navnetjekker og kalde navne sletter, multiconnect threading chat. kombabilet med FXML, connect kode til GUI
 
 public class Client {
     public static void main(String[] args) {

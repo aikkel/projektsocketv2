@@ -2,8 +2,10 @@ package Server;
 
 import java.util.HashSet;
 
+/*
 public class Server {
-    /*skal indeholde connection lytter, navnetjekker, navnefjerner */
+//skal indeholde connection lytter, navnetjekker, navnefjerner
+
         //hashset - til navne
         HashSet<String> nc = new HashSet<String>();
 
@@ -27,5 +29,30 @@ public class Server {
             System.out.println("Name not found in the current session: " + name);
             return false;
         }
+    }
+}
+*/
+
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
+
+public class Server {
+    private List<String> connectedNames = new CopyOnWriteArrayList<>();
+
+    public boolean addName(String name) {
+        if (!connectedNames.contains(name)) {
+            connectedNames.add(name);
+            return true; // Name added successfully
+        } else {
+            return false; // User with the same name already exists
+        }
+    }
+
+    public void removeName(String name) {
+        connectedNames.remove(name);
+    }
+
+    public List<String> getConnectedNames() {
+        return connectedNames;
     }
 }
