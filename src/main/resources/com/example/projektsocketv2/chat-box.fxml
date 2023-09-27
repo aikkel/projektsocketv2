@@ -44,6 +44,7 @@
                   <Font size="18.0" />
                </font>
             </Text>
+            <Button fx:id="Tilbage" layoutX="83.0" layoutY="14.0" mnemonicParsing="false" onAction="#Tilbage" text="Tilbage" />
          </children></AnchorPane>
     <AnchorPane minHeight="0.0" minWidth="0.0" prefHeight="100.0" prefWidth="160.0" style="-fx-background-color: lightblue;">
          <children>
