@@ -37,22 +37,5 @@ import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 //todo retuner noget der kan måles på, så logincontroller kan skrive tilbage med success eller fejl
 public class Server {
-    private List<String> connectedNames = new CopyOnWriteArrayList<>();
 
-    public boolean addName(String name) {
-        if (!connectedNames.contains(name)) {
-            connectedNames.add(name);
-            return true; // Name added successfully
-        } else {
-            return false; // User with the same name already exists
-        }
-    }
-
-    public void removeName(String name) {
-        connectedNames.remove(name);
-    }
-
-    public List<String> getConnectedNames() {
-        return connectedNames;
-    }
 }

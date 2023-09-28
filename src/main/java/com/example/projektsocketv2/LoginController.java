@@ -1,6 +1,5 @@
 package com.example.projektsocketv2;
 
-import Server.Server;
 import javafx.event.ActionEvent;
 import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
@@ -10,32 +9,18 @@ import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
-
-import java.util.HashSet;
-import java.util.concurrent.locks.Condition;
+import java.util.List;
+import java.util.concurrent.CopyOnWriteArrayList;
 
 public class LoginController {
-
     @FXML
     private Label tryAgain;
     @FXML
     private TextField nameInput;
-    @FXML
-    private Button lukButton;
-    @FXML
-    private Button acceptKnap;
-
-    private static String name;
-
-    public static String getName() {
-        return name;
-    }
-
-    public void setName(String name) {
-        LoginController.name = name;
-    }
-
     private Stage primaryStage;
+
+    // Static list to store connected names
+    private static List<String> connectedNames = new CopyOnWriteArrayList<>();
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
@@ -53,9 +38,6 @@ public class LoginController {
         }
     }
 
-
-
-
     public void switchToScene2() {
         try {
             // Load chat-box.fxml
@@ -64,6 +46,8 @@ public class LoginController {
 
             // Set the controller for chat-box
             ChatController chatController = loader.getController();
+            chatController.setPrimaryStage(primaryStage); // Pass the primaryStage reference
+            chatController.setName(nameInput.getText()); // Pass the name
 
             primaryStage.setTitle("Chat");
             primaryStage.setScene(new Scene(root));
@@ -73,39 +57,27 @@ public class LoginController {
         }
     }
 
-
     @FXML
     public void buttonLukClick(ActionEvent event) {
-        String nameToRemove = nameInput.getText();
-        boolean removed = removeName();
-        removeName();
-        // You can add additional logic here based on whether the name was removed successfully
-        /*if (removed) {
-            // Name was removed successfully
-        } else {
-            // Name was not found in the current session
-        }
-
-         */
+        System.out.println(connectedNames);
+        System.exit(0);
     }
 
+    private boolean isNameTaken(String name) {
+        return connectedNames.contains(name);
+    }
+
+    @FXML
     public void acceptButtonClick(ActionEvent actionEvent) {
         String nameToAdd = nameInput.getText();
-        boolean added = addName(nameToAdd);
-
-        // You can add additional logic here based on whether the name was added successfully
-        if (added) {
-            setName(nameInput.getText());
-            System.out.println(nameInput.getText());
-            System.out.println(getName());
+        if (!isNameTaken(nameToAdd)) {
+            connectedNames.add(nameToAdd);
             tryAgain.setVisible(false);
+            System.out.println(connectedNames);
             switchToScene2();
-            // Name was added successfully
         } else {
-            // Name already exists
+            tryAgain.setVisible(true);
+            System.out.println("The name you entered has already been taken, please try again!");
         }
     }
-    //todo først switch efter name=true, if statement? hvis success retuneres fra server namechecker,
-    // sendes til næste scenem hvis fejl, prompt igen, med besked om hvorfor,
-    // tråd?
 }
