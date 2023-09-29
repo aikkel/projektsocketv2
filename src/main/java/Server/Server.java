@@ -1,41 +1,62 @@
 package Server;
 
-import java.util.HashSet;
+import java.io.*;
+import java.net.*;
+import java.util.*;
+import java.util.concurrent.CopyOnWriteArrayList;
 
-/*
 public class Server {
-//skal indeholde connection lytter, navnetjekker, navnefjerner
+    private static List<String> connectedNames = new CopyOnWriteArrayList<>();
 
-        //hashset - til navne
-        HashSet<String> nc = new HashSet<String>();
+    public static void main(String[] args) throws IOException {
+        int serverPort = 8080;
+        ServerSocket serverSocket = new ServerSocket(serverPort);
 
-        public boolean addName(String name) {
-            // Check if the name already exists
-            if (nc.contains(name)) {
-                System.out.println("Name already exists: " + name);
-                return false;
-            }
-            else
-                nc.add(name);
-            System.out.println("Name added: " + name);
-            return true;
-        }
-    public boolean removeNameFromSession(String name) {
-        if (nc.contains(name)) {
-            nc.remove(name);
-            System.out.println("Name removed from the current session: " + name);
-            return true;
-        } else {
-            System.out.println("Name not found in the current session: " + name);
-            return false;
+        System.out.println("Server is listening on port " + serverPort);
+
+        while (true) {
+            Socket clientSocket = serverSocket.accept();
+            System.out.println("Client connected: " + clientSocket.getInetAddress().getHostAddress());
+
+            // Handle the client in a separate thread
+            ClientHandler clientHandler = new ClientHandler(clientSocket);
+            Thread clientThread = new Thread(clientHandler);
+            clientThread.start();
         }
     }
-}
-*/
 
-import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
-//todo retuner noget der kan måles på, så logincontroller kan skrive tilbage med success eller fejl
-public class Server {
+    private static class ClientHandler implements Runnable {
+        private Socket clientSocket;
 
+        public ClientHandler(Socket clientSocket) {
+            this.clientSocket = clientSocket;
+        }
+
+        @Override
+        public void run() {
+            try (
+                    BufferedReader in = new BufferedReader(new InputStreamReader(clientSocket.getInputStream()));
+                    PrintWriter out = new PrintWriter(clientSocket.getOutputStream(), true)
+            ) {
+                String clientName = in.readLine();
+
+                if (clientName != null) {
+                    if (!connectedNames.contains(clientName)) {
+                        connectedNames.add(clientName);
+                        out.println("Name added successfully");
+                    } else {
+                        out.println("Duplicate name: " + clientName);
+                    }
+                }
+            } catch (IOException e) {
+                e.printStackTrace();
+            } finally {
+                try {
+                    clientSocket.close();
+                } catch (IOException e) {
+                    e.printStackTrace();
+                }
+            }
+        }
+    }
 }
