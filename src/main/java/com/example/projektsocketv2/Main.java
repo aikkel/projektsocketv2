@@ -7,8 +7,10 @@ import javafx.scene.Scene;
 import javafx.stage.Stage;
 
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
-public class ChatBox extends Application {
+public class Main extends Application {
     public static void main(String[] args) {
         launch(args);
     }
@@ -22,6 +24,12 @@ public class ChatBox extends Application {
 
             // Set the controller for login-box
             LoginController loginController = loader.getController();
+
+            // Create or obtain the connectedNames list here
+            List<String> connectedNames = new ArrayList<>(); // Create a new list
+            // Alternatively, you can retrieve it from the server if available
+
+            loginController.setConnectedNamesList(connectedNames);
             loginController.setPrimaryStage(primaryStage);
 
             primaryStage.setTitle("Login");
@@ -31,4 +39,5 @@ public class ChatBox extends Application {
             e.printStackTrace();
         }
     }
+
 }

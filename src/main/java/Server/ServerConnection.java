@@ -1,34 +1,55 @@
 package Server;
 
-import Client.ClientController;
-
 import java.io.*;
 import java.net.*;
 import java.util.*;
 
 public class ServerConnection {
+    private static List<ClientController> clients = new ArrayList<>();
+    private static Set<String> connectedNames = new HashSet<>();
+
     public static void main(String[] args) {
-        int serverPort = 8080; // Port number the server will listen on
+        int serverPort = 8080;
 
         try {
             ServerSocket serverSocket = new ServerSocket(serverPort);
             System.out.println("Server is listening on port " + serverPort);
 
-            List<ClientController> clients = new ArrayList<>();
-
             while (true) {
-                // Accept incoming client connections
                 Socket clientSocket = serverSocket.accept();
                 System.out.println("Client connected: " + clientSocket.getInetAddress().getHostAddress());
 
-                // Create a new ClientController to handle the client
                 ClientController clientController = new ClientController(clientSocket);
-                Thread thread = new Thread(clientController);
-                thread.start();
-                clients.add(clientController);
+                String clientName = clientController.getClientName();
+
+                // Check if the username is already connected
+                if (isUsernameConnected(clientName)) {
+                    // Send a message to the client indicating that the username is taken
+                    clientController.sendMessage("Username '" + clientName + "' is already connected. Please choose a different name.");
+                    // Close the connection with the duplicate username
+                    clientSocket.close();
+                } else {
+                    // Add the client to the list of connected clients
+                    clients.add(clientController);
+                    // Add the username to the list of connected usernames
+                    connectedNames.add(clientName);
+
+                    Thread thread = new Thread(clientController);
+                    thread.start();
+                }
             }
         } catch (IOException e) {
             e.printStackTrace();
         }
+    }
+
+    public static void broadcastMessage(String message) {
+        for (ClientController client : clients) {
+            client.sendMessage(message);
+        }
+    }
+
+    private static boolean isUsernameConnected(String username) {
+        return connectedNames.contains(username);
     }
 }

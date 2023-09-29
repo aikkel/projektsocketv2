@@ -5,12 +5,12 @@ import javafx.fxml.FXML;
 import javafx.fxml.FXMLLoader;
 import javafx.scene.Parent;
 import javafx.scene.Scene;
-import javafx.scene.control.Button;
 import javafx.scene.control.Label;
 import javafx.scene.control.TextField;
 import javafx.stage.Stage;
+
+import java.io.IOException;
 import java.util.List;
-import java.util.concurrent.CopyOnWriteArrayList;
 
 public class LoginController {
     @FXML
@@ -18,12 +18,14 @@ public class LoginController {
     @FXML
     private TextField nameInput;
     private Stage primaryStage;
-
-    // Static list to store connected names
-    private static List<String> connectedNames = new CopyOnWriteArrayList<>();
+    private List<String> connectedNames;
 
     public void setPrimaryStage(Stage primaryStage) {
         this.primaryStage = primaryStage;
+    }
+
+    public void setConnectedNamesList(List<String> connectedNames) {
+        this.connectedNames = connectedNames;
     }
 
     public void tryAgain() {
@@ -63,10 +65,6 @@ public class LoginController {
         System.exit(0);
     }
 
-    private boolean isNameTaken(String name) {
-        return connectedNames.contains(name);
-    }
-
     @FXML
     public void acceptButtonClick(ActionEvent actionEvent) {
         String nameToAdd = nameInput.getText();
@@ -76,8 +74,13 @@ public class LoginController {
             System.out.println(connectedNames);
             switchToScene2();
         } else {
-            tryAgain.setVisible(true);
+            tryAgain.setVisible(true); // Show the "tryagain" label
             System.out.println("The name you entered has already been taken, please try again!");
         }
+    }
+
+    private boolean isNameTaken(String name) {
+        // Modify this method to check if the name is already in connectedNames list
+        return connectedNames.contains(name);
     }
 }
