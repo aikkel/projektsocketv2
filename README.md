@@ -12,7 +12,7 @@ Name checker update to CopyonwrightArraylist - TCP/ip model redegørelse
 Mikkel G.
 Namechecker/name remover - input/output streams - readme
 
-disclaimer - kode virker ikke efter5 intetntion på nuværende tidspunkt.
+disclaimer - kode virker ikke efter intetntion på nuværende tidspunkt.
 under boot skal man starte Server klasse, Client klasse og chatbox klasse i den rækkefølge.
 
 intention - planen var at programmet skulle havde login screen, der sendte navn til server, som tjekkede for duplikanter, og fælles chatrum, med dette navn samt beskeder.
