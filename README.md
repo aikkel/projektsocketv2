@@ -19,5 +19,6 @@ intention - planen var at programmet skulle have login screen, der sendte navn t
 luk knappen ville skulle sende besked til server om at fjerne navn fra listen. alt+f4 eller kryds knappen var der ikke planlagt for i denne version.
 
 produkt udvikling - historik på chat fra før login - begrænset tid
+version - på lucushomie branch ligger en anden version, dennes login fungere lokalt til dels. navnecheck ligger også lokalt.
 
 https://drive.google.com/file/d/1Q4QtgsAy9KIBUr5EnNdMVWEcPXKj7SI0/view?usp=sharing
