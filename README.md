@@ -4,7 +4,7 @@ Casper w.
 JavaFXML + scenebuilder
 
 Lucas
-JavaFXLM, client server connection - multithreading - testing button return
+JavaFXLM, client server connection - multithreading - testing button return + connecting af kode til GUI
 
 Sofia
 Name checker update to CopyonwrightArraylist - TCP/ip model redegørelse
